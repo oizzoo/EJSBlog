@@ -1,0 +1,17 @@
+{
+  "name": "blog-project",
+  "version": "1.0.0",
+  "description": "Blog project from Angela Yu's course on UDEMY",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jakub Stożek",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  }
+}
