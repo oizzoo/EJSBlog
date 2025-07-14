@@ -1,24 +1,53 @@
-import express from "express"
+import express from "express";
 import bodyParser from "body-parser";
 
 const app = express();
 const port = 3000; 
+let posts = [];
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-    res.render("index.ejs");
+    res.render("index.ejs", { posts });
 });
 
 app.get("/new", (req, res) => {
-    let posts = [];
     res.render("newpost.ejs");
+});
+
+app.post("/new", (req, res) => {
+    const { title, content } = req.body;
+    posts.push({ title, content, date: new Date().toLocaleDateString('en-US') });
+    res.redirect("/");
+});
+
+app.get("/post/:id", (req, res) => {
+    const id = req.params.id;
+    if (posts[id]) {
+        res.render("post.ejs", { post: posts[id] });
+    } else {
+        res.status(404).render("404.ejs");
+    }
+});
+
+app.post("/delete/:id", (req, res) => {
+    const id = req.params.id;
+    if (posts[id]) {
+        posts.splice(id, 1);
+        res.redirect("/");
+    } else {
+        res.status(404).render("404.ejs");
+    }
 });
 
 app.get("/about", (req, res) => {
     res.render("about.ejs");
-})
+});
+
+app.use((req, res) => {
+    res.status(404).render("404.ejs");
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}.`);

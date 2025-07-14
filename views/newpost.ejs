@@ -1,7 +1,16 @@
 <%- include("partials/header.ejs") %>
-<body>
-    <main class="container">
-        <h1> SOMETHING </h1>
-    </main>
-</body>
+<main>
+    <h1>Create a new post</h1>
+    <form action="/new" method="POST">
+        <div>
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title" required>
+        </div>
+        <div>
+            <label for="content">Content:</label><br>
+            <textarea id="content" name="content" rows="5" required></textarea>
+        </div>
+        <button type="submit">Add Post</button>
+    </form>
+</main>
 <%- include("partials/footer.ejs") %>

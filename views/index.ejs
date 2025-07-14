@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include("partials/header.ejs") %>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
 <body>
+    <%- include("partials/header.ejs") %>
     <main class="container">
-      <h1>Welcome to my blog app!</h1>
-      <div>
-        
-      </div>
-      <p>We will add form to create posts and other stuff WORK IN PROGRESS..</p>
+        <h1>Welcome to my blog app!</h1>
+        <% if (posts.length === 0) { %>
+            <p>No posts yet, be the first to <a href="/new" class="navbar-links">add a post</a>!</p>
+        <% } else { %>
+            <div class="posts-list">
+                <% posts.forEach((post, index) => { %>
+                    <article class="post">
+                        <h2><a href="/post/<%= index %>" class="post-title"><%= post.title %></a></h2>
+                        <p><%= post.content.substring(0, 200) %>...</p>
+                        <form action="/delete/<%= index %>" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </article>
+                <% }) %>
+            </div>
+        <% } %>
     </main>
+    <%- include("partials/footer.ejs") %>
 </body>
-<%- include("partials/footer.ejs") %>
 </html>
