@@ -25,7 +25,27 @@ app.post("/new", (req, res) => {
 app.get("/post/:id", (req, res) => {
     const id = req.params.id;
     if (posts[id]) {
-        res.render("post.ejs", { post: posts[id] });
+        res.render("post.ejs", { post: posts[id], id });
+    } else {
+        res.status(404).render("404.ejs");
+    }
+});
+
+app.get("/edit/:id", (req, res) => {
+    const id = req.params.id;
+    if (posts[id]) {
+        res.render("editpost.ejs", { post: posts[id], id });
+    } else {
+        res.status(404).render("404.ejs");
+    }
+});
+
+app.post("/edit/:id", (req, res) => {
+    const id = req.params.id;
+    if (posts[id]) {
+        const { title, content } = req.body;
+        posts[id] = { title, content, date: new Date().toLocaleDateString('en-US') };
+        res.redirect(`/post/${id}`);
     } else {
         res.status(404).render("404.ejs");
     }

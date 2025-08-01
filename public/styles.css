@@ -7,7 +7,7 @@ html, body {
 }
 
 main.container {
-    background-color: #f9f9f9; /* Slightly lighter than body background */
+    background-color: #f9f9f9;
     border-radius: 8px;
     padding: 2rem;
     box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
@@ -71,12 +71,12 @@ header {
 }
 
 /* Posts Styling */
-
 .post-title {
     text-decoration: none;
     color: #2c3e50;
     transition: color 0.2s;
 }
+
 .post-title:hover {
     color: #1abc9c;
 }
@@ -94,8 +94,8 @@ header {
   box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
   padding: 1.5rem 2rem;
   transition: box-shadow 0.2s;
-  max-width: 100%; /* Ensure post doesn't exceed container width */
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .post-meta {
@@ -111,7 +111,7 @@ header {
 
 .post h1 {
     color: #2c3e50;
-    font-size: 2rem; /* Larger title for single post */
+    font-size: 2rem;
     margin-bottom: 1rem;
 }
 
@@ -124,25 +124,54 @@ header {
 .post p {
     word-break: break-word;
     overflow-wrap: break-word;
-    line-height: 1.8; /* Better readability */
+    line-height: 1.8;
     color: #555;
 }
 
-/* button styling */
-
-form button {
-    background-color: #ff4444;
-    color: #fff;
+/* Button Styling */
+.btn-edit, .btn-delete, .btn-save, .btn-cancel {
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.2s;
     font-family: 'Segoe UI', sans-serif;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
 }
 
-form button:hover {
+.btn-edit, .btn-save {
+    background-color: #1abc9c;
+    color: #fff;
+}
+
+.btn-edit:hover, .btn-save:hover {
+    background-color: #16a085;
+}
+
+.btn-delete {
+    background-color: #ff4444;
+    color: #fff;
+}
+
+.btn-delete:hover {
     background-color: #cc0000;
+}
+
+.btn-cancel {
+    background-color: #777;
+    color: #fff;
+}
+
+.btn-cancel:hover {
+    background-color: #555;
+}
+
+.post-actions, .form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
 .btn-back {
@@ -155,6 +184,7 @@ form button:hover {
     transition: background-color 0.2s;
     font-family: 'Segoe UI', sans-serif;
 }
+
 .btn-back:hover {
     background-color: #16a085;
 }
@@ -209,5 +239,10 @@ footer {
 
   .footer-container {
     font-size: 0.9rem;
+  }
+
+  .post-actions, .form-actions {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
