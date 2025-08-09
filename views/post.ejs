@@ -1,27 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= post.title %></title>
-    <link rel="stylesheet" href="/styles.css">
-</head>
-<body>
-    <%- include("partials/header.ejs") %>
-    <main class="container">
-        <article class="post">
-            <h1><%= post.title %></h1>
-            <% if (post.date) { %>
-                <p class="post-meta">Published on: <%= post.date %></p>
-            <% } %>
-            <p><%= post.content %></p>
+<%- include("partials/header.ejs") %>
+<main class="container post">
+    <article class="post">
+        <h1><%= post.title %></h1>
+        
+        <% if (post.date) { %>
+            <p class="post-meta">Published on: <%= post.date %></p>
+        <% } %>
+
+        <p><%= post.content %></p>
+
+        <div class="post-actions">
             <a href="/edit/<%= id %>" class="btn-edit">Edit Post</a>
-            <form action="/delete/<%= id %>" method="POST" style="display:inline;">
+            <form action="/delete/<%= id %>" method="POST" class="inline-form">
                 <button type="submit" class="btn-delete">Delete Post</button>
             </form>
-        </article>
-        <button onclick="window.location.href='/'" class="btn-back">Back to home</button>
-    </main>
-    <%- include("partials/footer.ejs") %>
-</body>
-</html>
+        </div>
+
+        <div class="form-actions">
+            <button onclick="window.location.href='/'" class="btn-back">Back to home</button>
+        </div>
+    </article>
+</main>
+<%- include("partials/footer.ejs") %>
